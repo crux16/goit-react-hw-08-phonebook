@@ -7,7 +7,7 @@ import Delete from '@mui/icons-material/Delete';
 import Edit from '@mui/icons-material/Edit';
 import Check from '@mui/icons-material/Check';
 import Cancel from '@mui/icons-material/Cancel';
-import { FormControl } from '@mui/base';
+import { Input } from '@mui/joy';
 
 
 export const ContactListItem = ({ filteredContact, dispatch }) => {
@@ -44,8 +44,8 @@ export const ContactListItem = ({ filteredContact, dispatch }) => {
     <li className={css.contactListItem}>
       
       { edit?
-      <FormControl className={css.contactEdit}>
-        <input
+      <form className={css.contactEdit}>
+        <Input
           type="text"
           name="name"
           // add \ before - in [' \-] to make it work (LMS)
@@ -55,7 +55,7 @@ export const ContactListItem = ({ filteredContact, dispatch }) => {
           value={name}
           onChange={handleNameChange}
         />
-        <input
+        <Input
           type="tel"
           name="number"
           // add \ before - in [\-.\s] to make it work (LMS)
@@ -69,7 +69,7 @@ export const ContactListItem = ({ filteredContact, dispatch }) => {
         <Button onClick={handleClickEdit} color="primary" size='sm'><Cancel /></Button>
         <Button onClick={handleUpdate} color='success' size='sm'><Check /></Button>
         </span>
-      </FormControl>
+      </form>
       :
       <div className={css.contactEdit}>
       <p>{filteredContact.name} &#58;</p>
