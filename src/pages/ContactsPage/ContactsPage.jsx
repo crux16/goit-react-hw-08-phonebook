@@ -10,8 +10,9 @@ const ContactsPage = () => {
         <title>Phonebook</title>
       </Helmet>
       <ContactForm />
-      <h2>Contacts</h2>
+      <h3>Filter</h3>
       <Filter />
+      <h3>Contact List:</h3>
       <ContactList />
     </HelmetProvider>
   );

@@ -3,6 +3,9 @@ import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contacts/contactsOperation';
 import { selectContacts } from '../../redux/contacts/contactsSelector';
+import Button from '@mui/joy/Button';
+import Add from '@mui/icons-material/Add';
+import { Input } from '@mui/joy';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -46,7 +49,7 @@ export const ContactForm = () => {
     <form className={css.form} onSubmit={handleSubmit}>
       <label className={css.formField}>
         <p className={css.formLabel}>Name</p>
-        <input
+        <Input
           type="text"
           name="name"
           // add \ before - in [' \-] to make it work (LMS)
@@ -60,7 +63,7 @@ export const ContactForm = () => {
 
       <label className={css.formField}>
         <p className={css.formLabel}>Number</p>
-        <input
+        <Input
           type="tel"
           name="number"
           // add \ before - in [\-.\s] to make it work (LMS)
@@ -71,9 +74,7 @@ export const ContactForm = () => {
           onChange={handleNumberChange}
         />
       </label>
-      <button className={css.formButton} type="submit">
-        Add Contact
-      </button>
+      <Button type="submit" variant='solid' style={{width:"fit-content"}}><Add />Phone Contact</Button>
     </form>
   );
 };

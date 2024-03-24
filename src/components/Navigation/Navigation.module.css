@@ -9,5 +9,6 @@
 .linkActive {
   composes: link;
   font-weight: 800;
-  color: #e84a5f;
+  background-color: #e84a5f;
+  color: #fff;
 }

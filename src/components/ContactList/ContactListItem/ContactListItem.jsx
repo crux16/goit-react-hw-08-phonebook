@@ -2,6 +2,13 @@ import css from './ContactListItem.module.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { deleteContact, updateContact } from '../../../redux/contacts/contactsOperation';
+import Button from '@mui/joy/Button';
+import Delete from '@mui/icons-material/Delete';
+import Edit from '@mui/icons-material/Edit';
+import Check from '@mui/icons-material/Check';
+import Cancel from '@mui/icons-material/Cancel';
+import { FormControl } from '@mui/base';
+
 
 export const ContactListItem = ({ filteredContact, dispatch }) => {
 
@@ -20,7 +27,7 @@ export const ContactListItem = ({ filteredContact, dispatch }) => {
   const handleClickEdit = () =>{
     setName(filteredContact.name);
     setNumber(filteredContact.number);
-    setEdit(true);
+    setEdit(!edit);
   }
 
   const handleUpdate = () => {
@@ -37,7 +44,7 @@ export const ContactListItem = ({ filteredContact, dispatch }) => {
     <li className={css.contactListItem}>
       
       { edit?
-      <>
+      <FormControl className={css.contactEdit}>
         <input
           type="text"
           name="name"
@@ -58,13 +65,20 @@ export const ContactListItem = ({ filteredContact, dispatch }) => {
           value={number}
           onChange={handleNumberChange}
         />
-        <button onClick={handleUpdate}>Done</button>
-      </>:<>
-      <p>{filteredContact.name}&#58;</p>
+        <span style={{display:'inline-flex',gap:'8px'}}>
+        <Button onClick={handleClickEdit} color="primary" size='sm'><Cancel /></Button>
+        <Button onClick={handleUpdate} color='success' size='sm'><Check /></Button>
+        </span>
+      </FormControl>
+      :
+      <div className={css.contactEdit}>
+      <p>{filteredContact.name} &#58;</p>
       <p>{filteredContact.number}</p>
-      <button onClick={handleDelete}>Delete</button>
-      <button onClick={handleClickEdit}>Edit</button>
-      </>}
+      <span style={{display:'inline-flex',gap:'8px'}}>
+      <Button onClick={handleDelete} color="danger" size='2'><Delete /></Button>
+      <Button onClick={handleClickEdit} color='success' variant='outlined' size='sm'><Edit /></Button>
+      </span>
+      </div>}
     </li>
   );
 };
