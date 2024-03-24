@@ -36,6 +36,7 @@ export const ContactList = () => {
           <ContactListItem
             key={filteredContact.id}
             filteredContact={filteredContact}
+            dispatch={dispatch}
           />
         ))}
     </ul>

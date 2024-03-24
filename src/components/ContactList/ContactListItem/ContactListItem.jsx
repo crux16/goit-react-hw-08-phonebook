@@ -1,11 +1,9 @@
 import css from './ContactListItem.module.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { deleteContact, updateContact } from '../../../redux/contacts/contactsOperation';
 
-export const ContactListItem = ({ filteredContact }) => {
-  const dispatch = useDispatch();
+export const ContactListItem = ({ filteredContact, dispatch }) => {
 
   const [ name, setName ] = useState('');
   const [ number, setNumber ] = useState('');
@@ -38,7 +36,8 @@ export const ContactListItem = ({ filteredContact }) => {
   return (
     <li className={css.contactListItem}>
       
-      { edit?<>
+      { edit?
+      <>
         <input
           type="text"
           name="name"
