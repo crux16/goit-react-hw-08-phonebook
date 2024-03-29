@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 /*
  * GET @ /contacts
@@ -25,8 +26,10 @@ export const addContact = createAsyncThunk(
   async ({ name, number }, thunkAPI) => {
     try {
       const response = await axios.post('/contacts', { name, number });
+      toast.success(`${name} is successfully added`)
       return response.data;
     } catch (error) {
+      toast.error(`Incorrect input name or number`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -38,9 +41,10 @@ export const addContact = createAsyncThunk(
  */
 export const updateContact = createAsyncThunk(
   'contacts/updateContact',
-  async ({ id, name, number }, thunkAPI) => {
+  async ({ id, name, number, current }, thunkAPI) => {
     try {
       const response = await axios.patch(`/contacts/${id}`, { name, number });
+      if(name)
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -1,5 +1,6 @@
-import { SyncLoader } from 'react-spinners';
+import { GridLoader } from 'react-spinners';
+import css from './Loader.module.css';
 
 export const Loader = () => {
-  return <SyncLoader color="#36d7b7" />;
+  return <GridLoader className={css.span} color="#000" size={'30px'} margin={'4px'} />;
 };

@@ -6,6 +6,8 @@ import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { refreshUser } from '../redux/auth/authOperations';
 import { useAuth } from '../hooks/useAuth';
+import { UserLoader } from './UserLoader/UserLoader';
+
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
@@ -21,7 +23,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <UserLoader />
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

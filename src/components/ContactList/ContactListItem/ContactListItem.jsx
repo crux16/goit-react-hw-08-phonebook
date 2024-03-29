@@ -7,7 +7,8 @@ import Delete from '@mui/icons-material/Delete';
 import Edit from '@mui/icons-material/Edit';
 import Check from '@mui/icons-material/Check';
 import Cancel from '@mui/icons-material/Cancel';
-import { Input } from '@mui/joy';
+import { Input } from '@mui/joy'; 
+import { toast } from 'react-toastify';
 
 
 export const ContactListItem = ({ filteredContact, dispatch }) => {
@@ -31,8 +32,16 @@ export const ContactListItem = ({ filteredContact, dispatch }) => {
   }
 
   const handleUpdate = () => {
+
+    if(name.toLowerCase()===filteredContact.name.toLowerCase()&&number.toLowerCase()===filteredContact.number.toLowerCase()){
+      toast.info('nothing Changed!');
+      setEdit(!edit);
+      return;
+    }
+
     dispatch(updateContact({id:filteredContact.id,name,number}));
-    setEdit(false);
+    toast.success(`successfuly changed`);
+    setEdit(!edit);
   }
 
   // handleDelete method

@@ -6,6 +6,7 @@ import { selectContacts } from '../../redux/contacts/contactsSelector';
 import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
 import { Input } from '@mui/joy';
+import { toast } from 'react-toastify';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export const ContactForm = () => {
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
     if (existingContact) {
-      alert(`${name} is already in contacts!`);
+      toast.warning(`${name} is already in contacts!`);
       return;
     }
 
